@@ -1,2 +1,2 @@
 # stock-engine-frontend
-# test
+# Authors: Adrian & Olaf Naruszko
