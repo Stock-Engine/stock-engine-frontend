@@ -11,22 +11,25 @@ Initially this project was meant as a hobbyist project for two people, but every
 Having said that we also state that the initial team consists of:
 * somehow-experienced full stack developer with very little experience in team leadership,
 * junior frontend developer.
+
 Thus we expect it will be a funny journey for all of us :) 
 
 # How to contribute
 1. Fork the repository
+    * Clone it with `git clone git@github.com:Stock-Engine/stock-engine-frontend.git`
     * [Configure][1] `upstream` repository with `git remote add upstream git@github.com:Stock-Engine/stock-engine-frontend.git`
     * In order to keep your fork up to date use `git fetch upstream; git rebase upstream/main` 
 2. Assign one of the [issues][2] to yourself, or create new one with your idea and wait for some response.
 3. Do the change. 
     * If anything is unclear or doesn't work - feel encouraged to ask about it.
     * Name commits [properly][3].
+4. Create Pull Request and link it with your issue. 
     * If possible keep review changes in separate commits. Those should be later squashed to keep nice & clean history.
     * Recommended scenario (it is not required, but it should be the least painful one) is as follows:
         * Keep the change in single commit,
         * Add separate review commits,
-        * At the end squash everything to a single commit.  
-4. Repository requires linear history, so avoid merging.
+        * At the end squash everything to a single commit.
+5. Repository requires linear history, so please avoid merging.
 
 ### Authors: Adrian & Olaf Naruszko
 
