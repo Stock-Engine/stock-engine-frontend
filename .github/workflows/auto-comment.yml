@@ -1,0 +1,12 @@
+name: Auto Comment
+on: pull_request_target
+
+jobs:
+  local-checkout:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: bubkoo/auto-comment@v1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          pullRequestOpened: >
+            `pipenv run scripts/checkout.py ${{ github.actor }} ${{ github.head_ref }}` - type in repo root to checkout this change locally
