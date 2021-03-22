@@ -10,5 +10,6 @@ for package in nodejs pipenv
 done
 
 pipenv install
+npm install
 
 echo 'Installation successful'

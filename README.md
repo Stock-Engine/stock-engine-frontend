@@ -31,6 +31,13 @@ Thus we expect it will be a funny journey for all of us :)
         * At the end squash everything to a single commit.
 5. Repository requires linear history, so please avoid merging.
 
+## How to install
+1. Clone the repository with `git clone git@github.com:Stock-Engine/stock-engine-frontend.git`
+2. Run `scripts/install.sh`
+
+## How to run
+1. Run `scripts/run_dev.sh`
+
 ### Authors: Adrian & Olaf Naruszko
 
 [1]: https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/configuring-a-remote-for-a-fork
