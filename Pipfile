@@ -5,3 +5,10 @@ name = "pypi"
 
 [dev-packages]
 plumbum = "*"
+
+[packages]
+flask = "*"
+flask_sqlalchemy = "*"
+flask-praetorian = "*"
+flask_cors = "*"
+
