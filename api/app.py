@@ -39,5 +39,9 @@ from api import api_blueprint  # noqa
 app.register_blueprint(api_blueprint)
 
 
-if __name__ == "__main__":
+def run():
     app.run(host="0.0.0.0", port=int(os.environ.get("FLASK_PORT", 5000)))
+
+
+if __name__ == "__main__":
+    run()
