@@ -1,0 +1,143 @@
+@import "../../../variables.css";
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Roboto:wght@400;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+
+span {
+    color: var(--green);
+}
+
+h2 {
+    font-size: 37px;
+}
+
+.login {
+    height: 100vh;
+}
+
+.login__section {
+    margin: 18vh auto;
+    font-family: 'Roboto', sans-serif;
+}
+
+.login__section--header {
+    padding: 20px;
+}
+
+.header__logo {
+    font-family: 'Indie Flower', cursive;
+    font-size: 37px;
+    font-weight: bold;
+}
+
+.login__section--title {
+    margin: 40px 0;
+    text-align: center;
+    color: var(--green);
+}
+
+.login__section--title hr {
+    margin-top: 10px;
+    width: 75px;
+    height: 2.7px;
+    background-color: var(--green);
+    border: none;
+}
+
+.login__section--form {
+    text-align: center;
+}
+
+.form__input {
+    border: 0.5px solid var(--gray);
+    background-color: white;
+    border-radius: 5px;
+    margin: 20px auto 20px auto;
+    width: 250px;
+}
+
+.form__input span {
+    font-size: 15px;
+    margin: 0 10px 0 -15px;
+    color: var(--gray);
+}
+
+#input--username,
+#input--password {
+    padding: 7px;
+    border: none;
+    outline: 0;
+}
+
+#button--submit {
+    padding: 13px 26px;
+    font-size: 20px;
+    color: white;
+    background-color: var(--green);
+    border: none;
+    border-radius: 15px;
+    font-weight: bold;
+    margin-top: 5px;
+    transition: all 0.5s;
+}
+
+#button--submit:hover {
+    background-color: white;
+    color: var(--green);
+    border: 1px solid var(--green);
+}
+
+.login__section--arrow p {
+    margin-top: 25vh;
+    color: var(--green);
+    font-size: 15px;
+    text-align: center;
+}
+
+.login__section--arrow a {
+    position: absolute;
+    top: 90vh;
+    left: 47%;
+    height: 20px;
+    width: 20px;
+    border-left: 2px solid var(--green);
+    border-bottom: 2px solid var(--green);
+    transform: rotate(-45deg);
+    animation: animate--arrow  3s infinite;
+  }
+
+  @keyframes animate--arrow {
+      0% {
+        transform: rotate(-45deg) translate(0, 0);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: rotate(-45deg) translate(-20px, 20px);
+        opacity: 0;
+    }
+  }
+
+@media screen and (min-width: 700px) {
+
+    .login {
+        margin: auto auto;
+        width: 60%;
+        height: 70vh;
+        background-color: white;
+        border-radius: 20px 0 0 20px;
+    }
+
+    .login__section {
+        margin: 15% auto;
+    }
+
+    #input--username,
+    #input--password {
+        padding: 10px;
+    }
+    .login__section--arrow {
+        display: none;
+    }
+}

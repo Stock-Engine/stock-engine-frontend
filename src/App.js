@@ -1,9 +1,14 @@
 import './App.css'
+import Login from './components/LoginPage/LoginSection/LoginSection'
+import Register from './components/LoginPage/RegisterSection/RegisterSection'
 
 function App () {
   return (
     <div className='App'>
-      <h1>Stock Engine</h1>
+      <div className='login--page'>
+        <Login />
+        <Register />
+      </div>
     </div>
   )
 }
