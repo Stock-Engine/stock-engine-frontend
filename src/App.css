@@ -2,16 +2,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
 
 html {
-    scroll-behavior: smooth;
-}
-body {
-    background-color: #FBFCFC;
+  scroll-behavior: smooth;
 }
 
-@media (min-width:700px) {
-    .login--page {
-        margin: 15vh auto 125vh auto;
-        display: flex;
-        width: 90%;
-    }
+body {
+  background-color: #fbfcfc;
+}
+
+@media (min-width: 700px) {
+  .login--page {
+    margin: 15vh auto 125vh auto;
+    display: flex;
+    width: 90%;
+  }
 }
