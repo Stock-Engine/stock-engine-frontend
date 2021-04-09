@@ -9,7 +9,8 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.3",
-    "web-vitals": "^1.1.1"
+    "web-vitals": "^1.1.1",
+    "yarn": "^1.22.10"
   },
   "scripts": {
     "start-api": "cd api && FLASK_ENV=development FLASK_APP=test_app pipenv run flask run",
