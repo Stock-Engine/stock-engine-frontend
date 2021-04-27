@@ -1,5 +1,6 @@
 import {unmountComponentAtNode} from "react-dom";
 import {API} from "./api";
+import {getToken} from "./utils";
 
 let container = null;
 beforeEach(() => {
@@ -15,5 +16,5 @@ afterEach(() => {
 
 it("Should send valid API call", () => {
     const response = API.login('user', 'user')
-    return response.then((res) => console.log(res))
+    return response.then((res) => assert (getToken() != null))
 });
