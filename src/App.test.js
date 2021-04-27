@@ -1,8 +1,19 @@
-import { render, screen } from '@testing-library/react'
-import App from './App'
+import {unmountComponentAtNode} from "react-dom";
+import {API} from "./api";
 
-test('renders learn react link', () => {
-  render(<App />)
-  const linkElement = screen.getByText(/learn react/i)
-  expect(linkElement).toBeInTheDocument()
-})
+let container = null;
+beforeEach(() => {
+  container = document.createElement("div");
+  document.body.appendChild(container);
+});
+
+afterEach(() => {
+  unmountComponentAtNode(container);
+  container.remove();
+  container = null;
+});
+
+it("Should send valid API call", () => {
+    const response = API.login('user', 'user')
+    return response.then((res) => console.log(res))
+});
