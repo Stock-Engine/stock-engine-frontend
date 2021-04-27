@@ -24,7 +24,7 @@ def refresh():
     return ret, 200
 
 
-@api_blueprint.route("/dashboard", methods=["GET"])
+@api_blueprint.route("/", methods=["GET"])
 @flask_praetorian.auth_required
 def dashboard():
     return "Dashboard"
