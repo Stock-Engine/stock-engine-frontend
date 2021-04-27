@@ -1,17 +1,19 @@
 import './App.css'
-import Login from './components/LoginPage/LoginSection/LoginSection'
-import Register from './components/LoginPage/RegisterSection/RegisterSection'
-import setToken from './components/LoginPage/LoginSection/token'
+import {isAuthenticated} from "./utils";
+import React from "react";
+import { withCookies } from 'react-cookie';
+import Login from "./components/LoginPage/Login";
 
-function App () {
-  return (
-    <div className='App'>
-      <div className='login--page'>
-        <Login setToken={ setToken } />
-        <Register />
-      </div>
-    </div>
-  )
+class App extends React.Component {
+    render() {
+        const { cookies } = this.props;
+
+        if (isAuthenticated(cookies)) {
+            return "Placeholder"
+        } else {
+            return <Login />
+        }
+    }
 }
 
-export default App
+export default withCookies(App);

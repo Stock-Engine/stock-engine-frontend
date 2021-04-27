@@ -1,9 +1,10 @@
 import './LoginSection.css'
 import React from 'react'
-import {API} from "../../../api";
+import {API} from "../../../Api";
 import { Redirect } from 'react-router'
+import {withCookies} from "react-cookie";
 
-class Login extends React.Component {
+class LoginSection extends React.Component {
   constructor() {
     super();
 
@@ -15,7 +16,8 @@ class Login extends React.Component {
   }
 
   async loginUserApi(user, pass) {
-     return API.login(user, pass).then(response => {
+     const { cookies } = this.props;
+     return API.login(user, pass, cookies).then(response => {
        if (!response.ok) {
          console.log(response);
          throw Error(response.error);
@@ -81,4 +83,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login
+export default withCookies(LoginSection);
