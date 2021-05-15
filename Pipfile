@@ -13,4 +13,3 @@ flask = "*"
 flask_sqlalchemy = "*"
 flask-praetorian = "*"
 flask_cors = "*"
-

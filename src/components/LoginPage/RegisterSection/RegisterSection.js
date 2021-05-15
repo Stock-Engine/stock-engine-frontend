@@ -1,8 +1,8 @@
 import './RegisterSection.css'
-import React from "react";
+import React from 'react'
 
 class RegisterSection extends React.Component {
-  render() {
+  render () {
     return (
       <div className='register' id='register__section'>
         <section className='register__section--header'>
