@@ -5,8 +5,8 @@ import { Redirect } from 'react-router'
 import { withCookies } from 'react-cookie'
 
 class LoginSection extends React.Component {
-  constructor () {
-    super()
+  constructor (props) {
+    super(props)
 
     this.state = {
       redirectToDashboard: false
@@ -23,7 +23,7 @@ class LoginSection extends React.Component {
         throw Error(response.error)
       }
       return response
-    }).then(data => data.json())
+    })
   }
 
   async handleSubmit (e) {
@@ -31,9 +31,7 @@ class LoginSection extends React.Component {
     const password = this.state.password
 
     e.preventDefault()
-    const token = await this.loginUserApi(username, password)
-
-    this.props.setToken(token)
+    await this.loginUserApi(username, password)
     this.setState({ redirectToDashboard: true })
   };
 
