@@ -6,6 +6,7 @@ name = "pypi"
 [dev-packages]
 plumbum = "*"
 pytest = "*"
+pre-commit = "*"
 
 [packages]
 flask = "*"
