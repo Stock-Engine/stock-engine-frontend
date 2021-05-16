@@ -12,4 +12,6 @@ done
 pipenv install
 npm install
 
+pipenv run pre-commit install
+
 echo 'Installation successful'
