@@ -1,27 +1,52 @@
-import { setToken } from './utils'
+import { setToken, getToken } from './utils'
+
+function defaultHeaders (cookies) {
+  const headers = {
+    'Content-Type': 'application/json'
+  }
+
+  const token = getToken(cookies)
+
+  if (token) {
+    headers.Authorization = 'Bearer ' + token
+  }
+
+  return headers
+}
 
 export class API {
-  static async login (user, pass, cookies) {
+  static async login (user, pass, cookies, throwError) {
     return window.fetch(process.env.REACT_APP_API_URL + '/api/login', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      headers: defaultHeaders(cookies),
       body: JSON.stringify({ username: user, password: pass })
-    }).then((res) => {
+    }).then(async (res) => {
+      const json = await res.json()
       if (res.ok) {
-        setToken(res, cookies)
+        setToken(json.access_token, cookies)
+      } else {
+        return throwError(res.status)
       }
-      return res
     })
   }
 
-  static getQueryHistory (cookies) {
-    // keep it in local storage for now
-    return Promise.resolve([{ name: 'Test query #1' }, { name: 'Test query #2' }])
+  static async getList (endpoint, cookies, throwError) {
+    return window.fetch(process.env.REACT_APP_API_URL + '/api/' + endpoint, {
+      method: 'GET',
+      headers: defaultHeaders(cookies)
+    }).then((res) => {
+      if (!res.ok) {
+        return throwError(res.status)
+      }
+      return res.json()
+    })
   }
 
-  static getAlerts (cookies) {
-    return Promise.resolve([{ name: 'Test alert #1' }, { name: 'Test alert #2' }])
+  static getAlerts (cookies, throwError) {
+    return this.getList('alert', cookies, throwError)
+  }
+
+  static async getQueryHistory (cookies, throwError) {
+    return this.getList('query', cookies, throwError)
   }
 }

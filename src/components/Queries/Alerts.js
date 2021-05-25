@@ -21,9 +21,9 @@ class Alerts extends React.Component {
   componentDidMount () {
     const ths = this
 
-    const { cookies } = this.props
-    API.getAlerts(cookies)
-      .then((alerts) => ths.setState({ alerts: alerts }))
+    const { cookies, throwError } = this.props
+    API.getAlerts(cookies, throwError)
+      .then((alerts) => ths.setState({ alerts: alerts.list }))
   }
 
   render () {

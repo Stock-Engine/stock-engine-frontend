@@ -1,5 +1,5 @@
 import './App.css'
-import { isAuthenticated } from './utils'
+import { isAuthenticated, setToken } from './utils'
 import React from 'react'
 import Login from './components/LoginPage/Login'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
@@ -9,6 +9,25 @@ import Alerts from './components/Queries/Alerts'
 import { withCookies } from 'react-cookie'
 
 class App extends React.Component {
+  constructor (props) {
+    super(props)
+
+    this.throwError = this.throwError.bind(this)
+    this.state = {
+      error: false
+    }
+  }
+
+  throwError (err) {
+    if (err === 401) {
+      const { cookies } = this.props
+      setToken(null, cookies)
+      this.forceUpdate()
+    } else this.setState({ error: err })
+
+    return Promise.reject(err)
+  }
+
   render () {
     const { cookies } = this.props
 
@@ -17,17 +36,17 @@ class App extends React.Component {
         <BrowserRouter>
           <Switch>
             <Route exact path='/'>
-              <Dashboard />
+              <Dashboard throwError={this.throwError} />
             </Route>
             <Route path='/queries'>
-              <Alerts />
-              <Queries />
+              <Alerts throwError={this.throwError} />
+              <Queries throwError={this.throwError} />
             </Route>
           </Switch>
         </BrowserRouter>
       )
     } else {
-      return <Login />
+      return <Login throwError={this.throwError} />
     }
   }
 }

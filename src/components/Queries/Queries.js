@@ -54,19 +54,28 @@ class Queries extends React.Component {
   componentDidMount () {
     const ths = this
 
-    const { cookies } = this.props
-    API.getQueryHistory(cookies)
-      .then((queries) => ths.setState({ queryHistory: queries }))
+    const { cookies, throwError } = this.props
+    API.getQueryHistory(cookies, throwError)
+      .then((queries) =>
+        ths.setState({ queryHistory: queries.list })
+      )
   }
 
   render () {
-    return (
-      <div>
-        <QueryInput />
-        <QueryHistoryList data={this.state.queryHistory} />
-      </div>
-
-    )
+    if (this.state.error) {
+      return (
+        <div>
+          this.state.error
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          <QueryInput />
+          <QueryHistoryList data={this.state.queryHistory} />
+        </div>
+      )
+    }
   }
 }
 

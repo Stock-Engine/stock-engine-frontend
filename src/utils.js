@@ -1,5 +1,5 @@
-export function setToken (res, cookies) {
-  cookies.set('access_token', res.json().access_token)
+export function setToken (token, cookies) {
+  cookies.set('access_token', token)
 }
 
 export function getToken (cookies) {
@@ -7,7 +7,8 @@ export function getToken (cookies) {
 }
 
 export function isAuthenticated (cookies) {
-  return getToken(cookies) != null
+  const token = getToken(cookies)
+  return Boolean(token) && token !== 'null' && token !== 'undefined'
 }
 
 export default isAuthenticated
