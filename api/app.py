@@ -2,12 +2,10 @@ import os
 
 import flask
 import flask_cors
-import flask_praetorian
-import flask_sqlalchemy
+from api import guard, api_blueprint
+from models import db, User, ModelEncoder
 
-guard = flask_praetorian.Praetorian()
 cors = flask_cors.CORS()
-db = flask_sqlalchemy.SQLAlchemy()
 
 
 def init_app():
@@ -17,8 +15,6 @@ def init_app():
     app.config["JWT_REFRESH_LIFESPAN"] = {"days": 30}
     app.config["SQLALCHEMY_DATABASE_URI"] = os.environ["FLASK_DB_URI"]
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-
-    from models import User
 
     guard.init_app(app, User)
     db.init_app(app)
@@ -32,9 +28,7 @@ def init_app():
 
 app = init_app()
 
-
-# Api makes import statements from app, it cannot be imported at the top of the file
-from api import api_blueprint  # noqa
+app.json_encoder = ModelEncoder
 
 app.register_blueprint(api_blueprint)
 
