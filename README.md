@@ -36,7 +36,7 @@ Thus we expect it will be a funny journey for all of us :)
 2. Run `scripts/install.sh`
 
 ## How to run
-1. Run `scripts/run_dev.sh`
+1. Run `yarn dev`
 
 ### Authors: Adrian & Olaf Naruszko
 

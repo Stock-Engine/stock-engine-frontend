@@ -17,6 +17,7 @@
   "scripts": {
     "start-api": "cd api && FLASK_ENV=development FLASK_APP=app_dev pipenv run flask run",
     "start": "react-scripts start",
+    "dev": "{ yarn start 2>&1 | sed -e 's/^/REACT: /' & yarn start-api 2>&1 | sed -e 's/^/API:   /'; }",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
