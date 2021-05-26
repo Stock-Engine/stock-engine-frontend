@@ -1,6 +1,6 @@
-import flask
-import flask_praetorian
 from flask import Blueprint, jsonify, request
+import flask_praetorian
+
 from models import Alert, Query, db
 
 guard = flask_praetorian.Praetorian()
@@ -9,7 +9,7 @@ api_blueprint = Blueprint(name="api", import_name=__name__, url_prefix="/api")
 
 @api_blueprint.route("/login", methods=["POST"])
 def login():
-    req = flask.request.get_json(force=True)
+    req = request.get_json(force=True)
     username = req.get("username", None)
     password = req.get("password", None)
     user = guard.authenticate(username, password)

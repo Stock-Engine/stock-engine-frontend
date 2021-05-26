@@ -1,7 +1,8 @@
 import os
 import tempfile
 
-from models import Alert, Query, User
+from api import guard
+from models import Alert, Query, User, db
 
 
 def env_default(key, val):
@@ -14,7 +15,7 @@ env_default("FLASK_SECRET_KEY", "not_a_secret_at_all")
 
 
 # Some env changes (above) must be done before this import
-from app import app, db, guard, run  # noqa
+from app import app, run  # noqa
 
 app.debug = True
 app.config["PROPAGATE_EXCEPTIONS"] = True
