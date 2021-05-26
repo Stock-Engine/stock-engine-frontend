@@ -24,3 +24,12 @@ repos:
       - id: isort
         name: isort (pyi)
         types: [ pyi ]
+  - repo: https://github.com/myint/autoflake
+    rev: v1.4
+    hooks:
+      - id: autoflake
+        name: autoflake
+        entry: autoflake
+        language: python
+        'types': [ python ]
+        require_serial: true
