@@ -2,8 +2,9 @@ import os
 
 import flask
 import flask_cors
-from api import guard, api_blueprint
-from models import db, User, ModelEncoder
+from models import ModelEncoder, User, db
+
+from api import api_blueprint, guard
 
 cors = flask_cors.CORS()
 

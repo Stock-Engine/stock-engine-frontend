@@ -1,6 +1,8 @@
 import os
 import tempfile
 
+from models import Alert, Query, User
+
 
 def env_default(key, val):
     if key not in os.environ:
@@ -18,7 +20,6 @@ app.debug = True
 app.config["PROPAGATE_EXCEPTIONS"] = True
 
 with app.app_context():
-    from models import User, Query, Alert
 
     def add_user(user, password, roles):
         if db.session.query(User).filter_by(username=user).count() < 1:

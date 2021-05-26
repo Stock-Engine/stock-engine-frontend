@@ -1,8 +1,7 @@
 import flask
 import flask_praetorian
-
-from models import Alert, Query, User
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, jsonify, request
+from models import Alert, Query, db
 
 guard = flask_praetorian.Praetorian()
 api_blueprint = Blueprint(name="api", import_name=__name__, url_prefix="/api")
