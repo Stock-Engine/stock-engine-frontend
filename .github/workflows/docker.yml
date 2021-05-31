@@ -39,5 +39,5 @@ jobs:
         playbook: ansible-playbook.yml
         directory: ./
         key: ${{secrets.SSH_PRIVATE_KEY}}
-      options: |
-        -i ansible_hosts
+        options: |
+          -i ansible_hosts
