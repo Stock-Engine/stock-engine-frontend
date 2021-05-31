@@ -1,0 +1,2 @@
+ - id: deploy-docker
+   execute-command: "/home/stock/frontend_repo/ansible/install-docker.sh"

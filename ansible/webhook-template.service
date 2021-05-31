@@ -1,0 +1,14 @@
+[Unit]
+Description=Webhook service
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+WorkingDirectory=~
+ExecStart=webhook -hooks /home/stock/frontend_repo/ansible/webhooks.json -hotreload
+
+[Install]
+WantedBy=default.target
