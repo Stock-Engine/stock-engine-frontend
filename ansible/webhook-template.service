@@ -7,6 +7,8 @@ StartLimitIntervalSec=0
 Type=simple
 Restart=always
 RestartSec=1
+User=stock # Docker daemon is not visible in systemctl --user services
+Group=stock
 WorkingDirectory=~
 ExecStart=webhook -hooks /home/stock/frontend_repo/ansible/webhooks.yml -hotreload -verbose
 
