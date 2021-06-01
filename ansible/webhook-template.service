@@ -8,7 +8,7 @@ Type=simple
 Restart=always
 RestartSec=1
 WorkingDirectory=~
-ExecStart=webhook -hooks /home/stock/frontend_repo/ansible/webhooks.json -hotreload
+ExecStart=webhook -hooks /home/stock/frontend_repo/ansible/webhooks.yml -hotreload -verbose
 
 [Install]
 WantedBy=default.target
