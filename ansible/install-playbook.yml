@@ -12,14 +12,6 @@
         key_file: /home/stock/.ssh/github_cd_rsa/ansible_rsa
         accept_hostkey: yes
       tags: git
-    - name: Run docker-compose script
-      become: true
-      become_user: stock
-      docker_compose:
-        project_src: /home/stock/frontend_repo
-        build: no
-        restarted: yes
-      register: output
     - name: Install go
       become: true
       become_user: stock
@@ -40,8 +32,8 @@
         path: /etc/systemd/user/webhook.service
       tags: install
     - name: Enable webhook service
+      become: true
       service:
-        arguments: --user
         enabled: yes
         name: webhook
         state: started
