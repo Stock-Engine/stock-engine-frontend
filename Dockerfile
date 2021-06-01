@@ -4,7 +4,6 @@ COPY package.json yarn.lock ./
 RUN yarn
 COPY src/ src/
 COPY public/ public/
-RUN ls -la ./
 RUN yarn build
 
 FROM nginx:1.12-alpine
