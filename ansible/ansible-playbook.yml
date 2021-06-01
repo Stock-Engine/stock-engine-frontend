@@ -1,23 +1,28 @@
 - hosts: servers
   remote_user: adi
-  become: true
   gather_facts: yes
   tasks:
     - name: Pull git repository
+      become: true
+      become_user: stock
       git:
         repo: git@github.com:Stock-Engine/stock-engine-frontend.git
         force: yes
-        dest: "{{ ansible_env.HOME }}/frontend_repo"
-        key_file: "{{ ansible_env.HOME }}/.ssh/github_cd_rsa/ansible_rsa"
+        dest: /home/stock/frontend_repo
+        key_file: /home/stock/.ssh/github_cd_rsa/ansible_rsa
         accept_hostkey: yes
       tags: git
     - name: Run docker-compose script
+      become: true
+      become_user: stock
       docker_compose:
-        project_src: "{{ ansible_env.HOME }}/frontend_repo"
+        project_src: /home/stock/frontend_repo
         build: no
         restarted: yes
       register: output
     - name: Install go
+      become: true
+      become_user: stock
       snap:
         classic: true
         name: go
@@ -27,9 +32,16 @@
       shell: go get github.com/adnanh/webhook
       tags: install
     - name: Install webhook service
+      become: true
       file:
         state: link
         force: yes
         src: /home/stock/frontend_repo/ansible/webhook-template.service
         path: /etc/systemd/user/webhook.service
       tags: install
+    - name: Enable webhook service
+      service:
+        arguments: --user
+        enabled: yes
+        name: webhook
+        state: started
