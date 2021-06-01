@@ -9,7 +9,7 @@
         repo: git@github.com:Stock-Engine/stock-engine-frontend.git
         force: yes
         dest: /home/stock/frontend_repo
-        key_file: /home/stock/.ssh/github_cd_rsa/ansible_rsa
+        key_file: /home/stock/.ssh/github_cd_rsa
         accept_hostkey: yes
       tags: git
     - name: Install go
