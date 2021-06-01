@@ -1,6 +1,6 @@
 FROM node:current-alpine3.12 as build-deps
 WORKDIR /usr/src/app
-COPY package.json yarn.lock ./
+COPY .env package.json yarn.lock ./
 RUN yarn
 COPY src/ src/
 COPY public/ public/
