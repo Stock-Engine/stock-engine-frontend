@@ -1,14 +1,18 @@
 import flask_sqlalchemy
+from sqlalchemy import Column, Integer, Text, Boolean
+from sqlalchemy.orm import DeclarativeMeta
 
 db = flask_sqlalchemy.SQLAlchemy()
 
+BaseModel: DeclarativeMeta = db.Model
 
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.Text, unique=True)
-    password = db.Column(db.Text)
-    roles = db.Column(db.Text)
-    is_active = db.Column(db.Boolean, default=True, server_default="true")
+
+class User(BaseModel):
+    id = Column(Integer, primary_key=True)
+    username = Column(Text, unique=True)
+    password = Column(Text)
+    roles = Column(Text)
+    is_active = Column(Boolean, default=True, server_default="true")
 
     @property
     def rolenames(self):
