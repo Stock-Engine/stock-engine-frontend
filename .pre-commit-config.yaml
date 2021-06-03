@@ -13,3 +13,9 @@ repos:
       - id: check-yaml
       - id: end-of-file-fixer
       - id: trailing-whitespace
+  - repo: https://github.com/ansible-community/ansible-lint.git
+    rev: v5.0.11
+    hooks:
+      - id: ansible-lint
+        files: \.(yaml|yml)$
+        config: .ansible-lint.yml
