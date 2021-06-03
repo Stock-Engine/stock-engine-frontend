@@ -1,5 +1,5 @@
 import flask_sqlalchemy
-from sqlalchemy import Column, Integer, Text, Boolean
+from sqlalchemy import Boolean, Column, Integer, Text
 from sqlalchemy.orm import DeclarativeMeta
 
 db = flask_sqlalchemy.SQLAlchemy()
