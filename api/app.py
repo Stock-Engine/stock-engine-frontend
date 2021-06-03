@@ -3,11 +3,11 @@ import os
 import flask
 import flask_cors
 import flask_praetorian
-import flask_sqlalchemy
+
+from models import db
 
 guard = flask_praetorian.Praetorian()
 cors = flask_cors.CORS()
-db = flask_sqlalchemy.SQLAlchemy()
 
 
 def init_app():
