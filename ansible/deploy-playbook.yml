@@ -1,17 +1,19 @@
 - hosts: servers
   remote_user: stock
-  become: false
-  gather_facts: yes
+  become: no
+  gather_facts: true
   tasks:
     - name: Pull git repository
       git:
         repo: git@github.com:Stock-Engine/stock-engine-frontend.git
         force: yes
+        depth: 1
+        version: mainz
         dest: "{{ ansible_env.HOME }}/frontend_repo"
-        key_file: "{{ ansible_env.HOME }}/.ssh/github_cd_rsa/ansible_rsa"
+        key_file: "{{ ansible_env.HOME }}/.ssh/github_cd_rsa"
         accept_hostkey: yes
       tags: git
-    - name: Run docker-compose script
+    - name: Run docker-compose script  # skip_ansible_lint
       docker_compose:
         project_src: "{{ ansible_env.HOME }}/frontend_repo"
         build: no

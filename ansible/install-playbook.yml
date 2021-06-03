@@ -3,28 +3,31 @@
   gather_facts: yes
   tasks:
     - name: Pull git repository
-      become: true
+      become: yes
       become_user: stock
       git:
         repo: git@github.com:Stock-Engine/stock-engine-frontend.git
         force: yes
+        depth: 1
+        version: main
         dest: /home/stock/frontend_repo
         key_file: /home/stock/.ssh/github_cd_rsa
         accept_hostkey: yes
       tags: git
-    - name: Install go
-      become: true
+    - name: Install go  # skip_ansible_lint
+      become: yes
       become_user: stock
       snap:
-        classic: true
+        classic: yes
         name: go
         state: present
       tags: install
     - name: Install webhooks
-      shell: go get github.com/adnanh/webhook
+      command: go get github.com/adnanh/webhook
+      changed_when: false
       tags: install
     - name: Install webhook service
-      become: true
+      become: yes
       file:
         state: link
         force: yes
@@ -32,7 +35,7 @@
         path: /etc/systemd/user/webhook.service
       tags: install
     - name: Enable webhook service
-      become: true
+      become: yes
       service:
         enabled: yes
         name: webhook
