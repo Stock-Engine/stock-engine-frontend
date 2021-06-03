@@ -1,8 +1,8 @@
 import flask
 import flask_praetorian
-from app import guard
 from flask import Blueprint, request
 
+guard = flask_praetorian.Praetorian()
 api_blueprint = Blueprint(name="api", import_name=__name__, url_prefix="/api")
 
 

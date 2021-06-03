@@ -2,11 +2,9 @@ import os
 
 import flask
 import flask_cors
-import flask_praetorian
+from api import api_blueprint, guard
+from models import User, db
 
-from models import db
-
-guard = flask_praetorian.Praetorian()
 cors = flask_cors.CORS()
 
 
@@ -18,7 +16,7 @@ def init_app():
     app.config["SQLALCHEMY_DATABASE_URI"] = os.environ["FLASK_DB_URI"]
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
-    from models import User
+    app.register_blueprint(api_blueprint)
 
     guard.init_app(app, User)
     db.init_app(app)
@@ -31,12 +29,6 @@ def init_app():
 
 
 app = init_app()
-
-
-# Api makes import statements from app, it cannot be imported at the top of the file
-from api import api_blueprint  # noqa
-
-app.register_blueprint(api_blueprint)
 
 
 def run():
