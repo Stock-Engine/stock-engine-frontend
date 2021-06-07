@@ -32,11 +32,11 @@
         state: link
         force: yes
         src: /home/stock/frontend_repo/ansible/webhook-template.service
-        path: /etc/systemd/user/webhook.service
+        path: /etc/systemd/user/webhook-stock.service
       tags: install
     - name: Enable webhook service
       become: yes
       service:
         enabled: yes
-        name: webhook
+        name: webhook-stock
         state: started
