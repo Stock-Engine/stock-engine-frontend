@@ -1,6 +1,6 @@
 - id: deploy-docker
   execute-command: "/home/stock/frontend_repo/ansible/install-docker.sh"
-  command-working-directory: "/home/stock/frontend_repo/ansible"
+  command-working-directory: "/home/stock/frontend_repo"
   pass-arguments-to-command:
     - source: payload
       name: callback_url
