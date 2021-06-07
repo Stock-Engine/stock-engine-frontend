@@ -3,4 +3,4 @@ services:
   frontend-staging:
     image: "adinar/stock-engine-frontend:latest"
     ports:
-      - "8086:80"
+      - "8087:80"
