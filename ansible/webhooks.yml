@@ -4,3 +4,5 @@
   pass-arguments-to-command:
     - source: payload
       name: callback_url
+    - source: payload
+      name: push_data.tag

@@ -1,6 +1,6 @@
 version: "3"
 services:
   frontend:
-    image: "adinar/stock-engine-frontend:latest"
+    image: "adinar/stock-engine-frontend:stable"
     ports:
       - "8085:80"
