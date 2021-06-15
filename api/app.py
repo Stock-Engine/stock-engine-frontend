@@ -2,8 +2,9 @@ import os
 
 import flask
 import flask_cors
+
 from api import api_blueprint, guard
-from models import User, db
+from models import ModelEncoder, User, db
 
 cors = flask_cors.CORS()
 
@@ -17,6 +18,7 @@ def init_app():
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
     app.register_blueprint(api_blueprint)
+    app.json_encoder = ModelEncoder
 
     guard.init_app(app, User)
     db.init_app(app)
@@ -32,7 +34,7 @@ app = init_app()
 
 
 def run():
-    app.run(host="0.0.0.0", port=int(os.environ.get("FLASK_PORT", 8008)))
+    app.run()
 
 
 if __name__ == "__main__":
