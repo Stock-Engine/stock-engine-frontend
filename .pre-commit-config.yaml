@@ -22,3 +22,23 @@ repos:
     rev: 'v0.812'
     hooks:
       - id: mypy
+  - repo: https://github.com/pycqa/isort
+    rev: 5.8.0
+    hooks:
+      - id: isort
+        name: isort (python)
+      - id: isort
+        name: isort (cython)
+        types: [cython]
+      - id: isort
+        name: isort (pyi)
+        types: [pyi]
+  - repo: https://github.com/myint/autoflake
+    rev: v1.4
+    hooks:
+      - id: autoflake
+        name: autoflake
+        entry: autoflake
+        language: python
+        types: [python]
+        require_serial: true
