@@ -1,6 +1,8 @@
 import flask
+from flask import Blueprint, jsonify, request
 import flask_praetorian
-from flask import Blueprint, request
+
+from models import Alert, Query, db
 
 guard = flask_praetorian.Praetorian()
 api_blueprint = Blueprint(name="api", import_name=__name__, url_prefix="/api")
@@ -24,7 +26,17 @@ def refresh():
     return ret, 200
 
 
-@api_blueprint.route("/", methods=["GET"])
+@api_blueprint.route("/query", methods=["GET"])
 @flask_praetorian.auth_required
-def dashboard():
-    return "Dashboard"
+def get_queries():
+    user_id = flask_praetorian.current_user_id()
+
+    return jsonify(list=db.session.query(Query).filter_by(user_id=user_id).all())
+
+
+@api_blueprint.route("/alert", methods=["GET"])
+@flask_praetorian.auth_required
+def get_alerts():
+    user_id = flask_praetorian.current_user_id()
+
+    return jsonify(list=db.session.query(Alert).filter_by(user_id=user_id).all())

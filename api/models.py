@@ -1,10 +1,18 @@
+import json
+
 import flask_sqlalchemy
-from sqlalchemy import Boolean, Column, Integer, Text
-from sqlalchemy.orm import DeclarativeMeta
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, Text
+from sqlalchemy.orm import DeclarativeMeta, relationship
 
 db = flask_sqlalchemy.SQLAlchemy()
 
 BaseModel: DeclarativeMeta = db.Model
+
+
+class ModelEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, BaseModel):
+            return dict((c.name, getattr(obj, c.name)) for c in obj.__table__.columns)
 
 
 class User(BaseModel):
@@ -13,6 +21,12 @@ class User(BaseModel):
     password = Column(Text)
     roles = Column(Text)
     is_active = Column(Boolean, default=True, server_default="true")
+    queries = relationship(
+        "Query", back_populates="user", cascade="all, delete", passive_deletes=True
+    )
+    alerts = relationship(
+        "Alert", back_populates="user", cascade="all, delete", passive_deletes=True
+    )
 
     @property
     def rolenames(self):
@@ -35,3 +49,17 @@ class User(BaseModel):
 
     def is_valid(self):
         return self.is_active
+
+
+class Query(BaseModel):
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey("user.id"))
+    name = Column(Text)
+    user = relationship("User", back_populates="queries")
+
+
+class Alert(BaseModel):
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey("user.id"))
+    name = Column(Text)
+    user = relationship("User", back_populates="alerts")
