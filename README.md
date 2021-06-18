@@ -1,6 +1,7 @@
 # stock-engine-frontend
 
 [![GitHub Super-Linter](https://github.com/Stock-Engine/stock-engine-frontend/workflows/Linter/badge.svg)](https://github.com/marketplace/actions/super-linter)
+[![GitHub Super-Linter](https://github.com/Stock-Engine/stock-engine-frontend/workflows/CodeQL/badge.svg)](https://github.com/github/codeql)
 
 ## What is this project about?
 In this project we aim for delivering a frontend for existing backend project that allows to track and analyze prices of stock market, extendable for other areas as well.
