@@ -2,10 +2,10 @@
 
 FROM python:3.8-slim-buster
 
-RUN pip installl pipenv
+RUN pip install --no-cache-dir pipenv==2021.5.29
 WORKDIR /usr/src/app
 RUN pipenv install --deploy --ignore-pipfile
 
-EXPOSE 5000
+EXPOSE 8008
 
-CMD ["FLASK_APP=app_dev", "pipenv", "run", "flask", "run"]
+CMD ["pipenv", "run", "flask", "run"]
