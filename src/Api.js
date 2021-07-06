@@ -1,4 +1,4 @@
-import { setToken } from './utils'
+import { getDefaultHeaders, setToken } from './utils'
 
 export class API {
   static async login (user, pass, cookies) {
@@ -10,18 +10,51 @@ export class API {
       body: JSON.stringify({ username: user, password: pass })
     }).then((res) => {
       if (res.ok) {
-        setToken(res, cookies)
+        return res.json()
       }
-      return res
+      return Promise.reject(res)
+    }).then(json => {
+      setToken(json.access_token, cookies)
+      return Promise.resolve()
     })
   }
 
-  static getQueryHistory (cookies) {
-    // keep it in local storage for now
-    return Promise.resolve([{ name: 'Test query #1' }, { name: 'Test query #2' }])
+  static async getQueryHistory (cookies) {
+    return this.getList(cookies, 'query')
   }
 
-  static getAlerts (cookies) {
-    return Promise.resolve([{ name: 'Test alert #1' }, { name: 'Test alert #2' }])
+  static async getAlerts (cookies) {
+    return this.getList(cookies, 'alert')
+  }
+
+  static async call (cookies, url, body, method) {
+    const values = {
+      method: method,
+      headers: getDefaultHeaders(cookies)
+    }
+
+    if (body) {
+      values.body = JSON.stringify(body)
+    }
+
+    return window.fetch(process.env.REACT_APP_API_URL + '/api/' + url, values)
+  }
+
+  static async getList (cookies, url, body) {
+    return this.get(cookies, url, body).then(res => {
+      if (res.ok) {
+        return res.json()
+      } else {
+        Promise.reject(res)
+      }
+    })
+  }
+
+  static async get (cookies, url, body) {
+    return this.call(cookies, url, body, 'GET')
+  }
+
+  static async registerFCM (cookies, currentToken) {
+    return this.call(cookies, 'register_fcm', { fcm_token: currentToken }, 'POST')
   }
 }

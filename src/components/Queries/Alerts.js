@@ -23,7 +23,7 @@ class Alerts extends React.Component {
 
     const { cookies } = this.props
     API.getAlerts(cookies)
-      .then((alerts) => ths.setState({ alerts: alerts }))
+      .then(json => ths.setState({ alerts: json.list }))
   }
 
   render () {
