@@ -17,12 +17,9 @@ class LoginSection extends React.Component {
 
   async loginUserApi (user, pass) {
     const { cookies } = this.props
-    return API.login(user, pass, cookies).then(response => {
-      if (!response.ok) {
-        console.log(response)
-        throw Error(response.error)
-      }
-      return response
+    return API.login(user, pass, cookies).catch(err => {
+      console.log(err)
+      throw Error(err)
     })
   }
 

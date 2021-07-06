@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.8.3",
+    "firebase": "^8.7.0",
     "react": "^17.0.1",
     "react-cookie": "^4.0.3",
     "react-dom": "^17.0.1",
@@ -46,6 +47,9 @@
   "standard": {
     "env": [
       "mocha"
+    ],
+    "ignore": [
+      "public/firebase-messaging-sw.js"
     ]
   }
 }

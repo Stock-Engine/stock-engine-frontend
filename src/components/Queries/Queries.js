@@ -56,7 +56,7 @@ class Queries extends React.Component {
 
     const { cookies } = this.props
     API.getQueryHistory(cookies)
-      .then((queries) => ths.setState({ queryHistory: queries }))
+      .then((json) => ths.setState({ queryHistory: json.list }))
   }
 
   render () {
