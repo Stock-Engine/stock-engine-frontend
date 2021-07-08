@@ -20,6 +20,7 @@ class User(BaseModel):
     username = Column(Text, unique=True)
     password = Column(Text)
     roles = Column(Text)
+    fcm_token = Column(Text, default=None)
     is_active = Column(Boolean, default=True, server_default="true")
     queries = relationship(
         "Query", back_populates="user", cascade="all, delete", passive_deletes=True

@@ -1,3 +1,5 @@
+import logging
+
 import flask
 from flask import Blueprint, jsonify, request
 import flask_praetorian
@@ -14,7 +16,9 @@ def login():
     username = req.get("username", None)
     password = req.get("password", None)
     user = guard.authenticate(username, password)
+
     ret = {"access_token": guard.encode_jwt_token(user)}
+
     return ret, 200
 
 
@@ -40,3 +44,19 @@ def get_alerts():
     user_id = flask_praetorian.current_user_id()
 
     return jsonify(list=db.session.query(Alert).filter_by(user_id=user_id).all())
+
+
+@api_blueprint.route("/register_fcm", methods=["POST"])
+@flask_praetorian.auth_required
+def register_fcm():
+    user = flask_praetorian.current_user()
+
+    req = flask.request.get_json(force=True)
+    fcm_token = req.get("fcm_token", None)
+
+    user.fcm_token = fcm_token
+    db.session.commit()
+
+    logging.info(f"User {user} registered in fcm")
+
+    return "", 200
