@@ -34,7 +34,7 @@ app = init_app()
 
 
 def run():
-    app.run()
+    app.run(port=8008, debug=True)
 
 
 if __name__ == "__main__":
