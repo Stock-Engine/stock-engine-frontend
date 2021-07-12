@@ -34,6 +34,10 @@ Thus we expect it will be a funny journey for all of us :)
         * At the end squash everything to a single commit.
 5. Repository requires linear history, so please avoid merging.
 
+### Project requirements that need actions
+Project uses Google FCM to communicate with browsers. In order to test it one must create firebase project and initialize it for web use. Credentials should be stored in `.env` file. Template is given in the `.env.template` file.
+It seems that FCM works on localhost only on Chrome browser, otherwise it requires https to work.
+
 ## How to install
 1. Clone the repository with `git clone git@github.com:Stock-Engine/stock-engine-frontend.git`
 2. Run `scripts/install.sh`
