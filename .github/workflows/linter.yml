@@ -13,5 +13,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_ANSIBLE: false
+          VALIDATE_PYTHON_ISORT: false
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: main
