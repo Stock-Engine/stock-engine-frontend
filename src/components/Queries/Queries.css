@@ -1,0 +1,147 @@
+.page--header {
+  padding: 20px;
+  margin-bottom: 25px;
+}
+
+.page--nav {
+  width: 35%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.page--nav p {
+  color: var(--lightGray);
+  text-decoration: none;
+  font-family: var(--roboto);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.query-form {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.query-input {
+  border: 0.5px solid var(--gray);
+  background-color: white;
+  border-radius: 5px;
+  margin: 20px 10px 20px auto;
+  width: 250px;
+}
+
+.query-input span {
+  font-size: 15px;
+  margin: 0 10px 0 15px;
+  color: var(--gray);
+}
+
+#input-query {
+  padding: 10px;
+  border: none;
+  outline: 0;
+}
+
+#btn-query {
+  border: none;
+  background-color: var(--green);
+  height: 37px;
+  color: white;
+  padding: 8px 15px;
+  font-size: 15px;
+  border-radius: 10px;
+  font-weight: bold;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin-right: auto;
+  line-height: 15px;
+}
+
+#firstAnchor {
+  color: black;
+}
+
+.queryList-header {
+  padding: 20px;
+  font-size: 18px;
+}
+
+.queryList-names {
+  display: none;
+}
+
+.queryList-element li {
+  padding: 15px;
+  margin: 20px auto;
+  width: 85%;
+  border: 2px solid var(--green);
+  border-radius: 10px;
+  font-family: var(--roboto);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.query-icons-box {
+  display: inline-flex;
+}
+
+.query-icons {
+  width: 20px;
+  color: var(--gray);
+  margin: 8px;
+  transition: 0.5s all;
+  cursor: pointer;
+}
+
+#alerts {
+  display: none;
+}
+
+@media screen and (min-width: 700px) {
+  .main-page {
+    margin: 10vh auto;
+    width: 90%;
+    height: 80vh;
+    background-color: white;
+    border-radius: 20px;
+  }
+
+  .main-page-components {
+    width: 85%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .page--nav,
+  .page--nav p {
+    display: none;
+  }
+
+  .queryList-header {
+    display: none;
+  }
+
+  .queryList-element {
+    width: 600px;
+  }
+
+  #alerts {
+    display: initial;
+  }
+
+  .queryList-names {
+    display: initial;
+    font-size: 18px;
+  }
+
+  .queryList-names-box {
+    display: flex;
+    justify-content: space-between;
+    width: 55%;
+    margin: 10px auto;
+  }
+}

@@ -5,9 +5,10 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import { FCM } from './fcm'
 import Login from './components/LoginPage/Login'
 import Dashboard from './components/Dashboard/Dashboard'
-import Queries from './components/Queries/Queries'
+import Queries, { PageHeader, QueryInput, QueryListHeader, QueryListName } from './components/Queries/Queries'
 import Alerts from './components/Queries/Alerts'
 import { withCookies } from 'react-cookie'
+
 import NotificationAllow from './components/Queries/NotificationAllow'
 
 FCM.init()
@@ -24,9 +25,17 @@ class App extends React.Component {
               <Dashboard />
             </Route>
             <Route path='/queries'>
-              <Alerts />
-              <Queries />
-              <NotificationAllow />
+              <div className='main-page'>
+                <PageHeader />
+                <QueryInput />
+                <QueryListHeader />
+                <QueryListName />
+                <div className='main-page-components'>
+                  <Queries />
+                  <Alerts />
+                  <NotificationAllow />
+                </div>
+              </div>
             </Route>
           </Switch>
         </BrowserRouter>
