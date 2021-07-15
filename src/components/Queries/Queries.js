@@ -1,17 +1,59 @@
 import React from 'react'
 import { withCookies } from 'react-cookie'
 import { API } from '../../Api'
+import './Queries.css'
+import { BellIcon, ArrowIcon, SyncIcon } from './Icons.js'
+import { PageNav } from './QueriesNav.js'
 
-class QueryInput extends React.Component {
+export class PageHeader extends React.Component {
   render () {
     return (
-      <form>
-        <label>
-          Query:
-          <input type='text' name='query' />
-        </label>
-        <input type='submit' value='Send' />
+      <div>
+        <header className='page--header'>
+          <p className='header__logo'>
+            <span>Stock</span> Engine
+          </p>
+        </header>
+        <PageNav />
+      </div>
+    )
+  }
+}
+
+export class QueryInput extends React.Component {
+  render () {
+    return (
+      <form className='query-form'>
+        <div className='query-input'>
+          <span className='fa fa-question' />
+          <input id='input-query' type='text' name='query' placeholder='Text of the query' required />
+        </div>
+        <button id='btn-query' type='submit'>SEND</button>
       </form>
+    )
+  }
+}
+
+export class QueryListHeader extends React.Component {
+  render () {
+    return (
+      <h3 className='queryList-header'>
+        History:
+      </h3>
+    )
+  }
+}
+export class QueryListName extends React.Component {
+  render () {
+    return (
+      <div className='queryList-names-box'>
+        <h3 className='queryList-names'>
+          Queries
+        </h3>
+        <h3 className='queryList-names'>
+          Alerts
+        </h3>
+      </div>
     )
   }
 }
@@ -19,14 +61,23 @@ class QueryInput extends React.Component {
 export class QueryList extends React.Component {
   render () {
     return (
+
       <ul>
-        {
-          this.props.data.map(el =>
-            <li key={el.id}>
-              {this.renderElement(el)}
-            </li>
-          )
-        }
+        <div className='queryList-element'>
+          {
+            this.props.data.map(el =>
+              <li key={el.id}>
+                {this.renderElement(el)}
+                <div className='query-icons-box'>
+                  <BellIcon />
+                  <SyncIcon />
+                  <ArrowIcon />
+                </div>
+              </li>
+            )
+          }
+
+        </div>
       </ul>
     )
   }
@@ -61,11 +112,9 @@ class Queries extends React.Component {
 
   render () {
     return (
-      <div>
-        <QueryInput />
+      <div id='queries'>
         <QueryHistoryList data={this.state.queryHistory} />
       </div>
-
     )
   }
 }

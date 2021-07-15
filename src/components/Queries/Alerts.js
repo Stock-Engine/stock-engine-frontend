@@ -28,7 +28,9 @@ class Alerts extends React.Component {
 
   render () {
     return (
-      <AlertList data={this.state.alerts} />
+      <div id='alerts'>
+        <AlertList data={this.state.alerts} />
+      </div>
     )
   }
 }

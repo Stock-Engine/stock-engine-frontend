@@ -1,0 +1,11 @@
+#ArrowSvg {
+  width: 20px;
+  color: var(--gray);
+  margin: 8px;
+}
+
+.arrow-rotate {
+  transform: rotateX(180deg);
+  transition: 0.5s all;
+  cursor: pointer;
+}
